@@ -23,4 +23,12 @@ public class Comment {
     public String toString() {
         return "Comment{" + "commentId=" + commentId + ", text='" + text + '\'' + '}';
     }
+
+    public int getPostId() {
+        return post.getPostId();
+    }
+
+    public int getUserId() {
+        return user.getUserId();
+    }
 }

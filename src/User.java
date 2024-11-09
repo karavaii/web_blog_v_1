@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class User {
     private static int idCounter = 1;
@@ -21,7 +22,15 @@ public class User {
         this.posts = new ArrayList<>();
     }
 
-    // Getters and Setters (для доступа к приватным полям)
+    public User(String userName, String email, String password) {
+        this.userId = idCounter++;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.avatar = null;
+        this.posts = new ArrayList<>();
+    }
+
     public int getUserId() { return userId; }
     public String getUserName() { return userName; }
     public boolean checkPassword(String password) { return this.password.equals(password); }

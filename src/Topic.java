@@ -13,6 +13,7 @@ public class Topic {
 
     public int getTopicId() { return topicId; }
     public String getTopicName() { return topicName; }
+    public String getDescription() {return description; }
 
     @Override
     public String toString() {

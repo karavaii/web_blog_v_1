@@ -1,36 +1,106 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Post {
     private static int idCounter = 1;
 
-    private int postId;
-    private Topic topic;
-    private User user;
+    private final int id;
+    private int userId;
+    private int topicId;
+    private String title;
     private String text;
     private String picture;
+    private String creationTime;
+    private String modificationTime;
 
-    private List<Comment> comments;
-
-    public Post(Topic topic, User user, String text, String picture) {
-        this.postId = idCounter++;
-        this.topic = topic;
-        this.user = user;
+    // Новый конструктор, принимающий userId и topicId
+    public Post(int userId, int topicId, String title, String text) {
+        this.id = idCounter++;
+        this.userId = userId;
+        this.topicId = topicId;
+        this.title = title;
         this.text = text;
-        this.picture = picture;
-        this.comments = new ArrayList<>();
+        this.creationTime = getCurrentTime();
+        this.modificationTime = null;
     }
 
-    public int getPostId() { return postId; }
-    public Topic getTopic() { return topic; }
-    public User getUser() { return user; }
-    public String getText() { return text; }
+    // Другой конструктор, включающий поле picture
+    public Post(int userId, int topicId, String title, String text, String picture) {
+        this(userId, topicId, title, text);
+        this.picture = picture;
+    }
 
-    public List<Comment> getComments() { return comments; }
-    public void addComment(Comment comment) { this.comments.add(comment); }
+    private String getCurrentTime() {
+        // Возвращает текущее время в виде строки (например, с использованием java.time.LocalDateTime)
+        return java.time.LocalDateTime.now().toString();
+    }
+
+    // Геттеры и сеттеры для полей
+
+    public int getPostId() {
+        return id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getTopicId() {
+        return topicId;
+    }
+
+    public void setTopicId(int topicId) {
+        this.topicId = topicId;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public String getModificationTime() {
+        return modificationTime;
+    }
+
+    public void setModificationTime(String modificationTime) {
+        this.modificationTime = modificationTime;
+    }
 
     @Override
     public String toString() {
-        return "Post{" + "postId=" + postId + ", topic=" + topic.getTopicName() + ", text='" + text + '\'' + '}';
+        return "Post{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", topicId=" + topicId +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", picture='" + (picture != null ? picture : "нет") + '\'' +
+                ", creationTime='" + creationTime + '\'' +
+                ", modificationTime='" + (modificationTime != null ? modificationTime : "нет") + '\'' +
+                '}';
     }
 }
